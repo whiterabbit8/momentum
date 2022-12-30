@@ -10,6 +10,7 @@ html {
 .container {
     max-width: 1440px;
     display: flex;
+    flex-direction: column;
     margin: 0 auto;
 }
 
@@ -43,6 +44,10 @@ nav ul {
     list-style: none;
 }
 
+nav span {
+    color: #E06733;
+}
+
 nav a {
     text-decoration: none;
     color: #010201;
@@ -56,4 +61,64 @@ nav a {
 .logo img {
     position: absolute;
     top: 53px;
+}
+
+main {
+    width: 1440px;
+    font: 20px Inter;
+    color: #636060;
+}
+
+.welcome {
+    width: 1440px;
+    height: 532px;
+    background: #EDF2EC;
+    margin: 0 auto;
+}
+
+.welcome-section {
+    width: 1222px;
+    height: 408px;
+    display: flex;
+    justify-content: space-between;
+    margin: 62px auto;
+}
+
+.welcome-text {
+    height: 340px;
+    width: 549px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: center;
+}
+
+h1 {
+    color: #717171;
+    font-size: 45px;
+    font-weight: 700;
+}
+
+h1 span {
+    color: #499A18;
+}
+
+.welcome-text p {
+    line-height: 35px;
+}
+
+.welcome-section button {
+    width: 158px;
+    height: 44px;
+    border: 2px solid #E06733;
+    border-radius: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #010201;
+    text-align: center;
+}
+
+button:hover {
+    background: #E06733;
+    color: #FFFFFF;
 }
