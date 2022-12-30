@@ -1,0 +1,59 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    max-width: 1440px;
+    display: flex;
+    margin: 0 auto;
+}
+
+header {
+    /*position: absolute;*/
+    width: 1440px;
+    height: 134px;
+    background: #EDF2EC;
+    font: 16px Inika;
+    color: #010201;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    width: 1220px;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    width: 452px;    
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: #010201;
+}
+
+.logo span {
+    position: relative;
+    left: 20px;
+}
+
+.logo img {
+    position: absolute;
+    top: 53px;
+}
