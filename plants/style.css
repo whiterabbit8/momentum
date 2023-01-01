@@ -128,8 +128,6 @@ h1 span {
     text-align: center;
 }
 
-
-
 .about {
     width: 1440px;
     height: 666px;
@@ -205,12 +203,6 @@ h1 span {
     text-align: center;
 }
 
-button:hover {
-    background: #E06733;
-    color: #FFFFFF;
-    cursor: pointer;
-}
-
 .services {
     width: 1222px;
     height: 955px;
@@ -256,4 +248,148 @@ button:hover {
 .service-item p {
     color: #717171;
     font: 16px Inter;
+}
+
+.prices {
+    width: 1440px;
+    height: 560px;
+    background: #FFFFFF;
+    color: #000000;
+}
+
+.prices-wrapper {
+    width: 1222px;
+    height: 405px;
+    margin: 40px auto;
+    display: flex;
+    flex-flow: column wrap;
+    font-weight: 700;
+    justify-content: space-between;
+    align-items: flex-end;
+    align-content: space-between;
+}
+
+.prices-menu {
+    width: 332px;
+    height: 391px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.prices-wrapper h2 {
+    font-size: 40px;
+    line-height: 48px;
+}
+
+.prices-items {
+    width: 332px;
+    height: 282px;
+    box-sizing: border-box;
+    border: 1px solid #E3E1D5;
+    border-radius: 20px;
+}
+
+.prices-items-wrapper {
+    width: 250px;
+    height: 214px;
+    padding: 34px 41px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.prices-item {
+    max-width: 250px;
+    height: 50px;
+    background: #EDF2EC;
+    border-radius: 20px;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+}
+
+.call-us-text {
+    width: 452px;
+    height: 191px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.call-us-text span {
+    color: #499A18;
+}
+
+.call-us-text button {
+    width: 162px;
+    height: 50px;
+    background: #FFFFFF;
+    border: 1px solid #E06733;
+    border-radius: 5px;
+    color: #E06733;
+    font: 20px Inika;
+    font-weight: 700;
+    text-align: center;
+}
+
+button {
+    box-sizing: border-box;
+}
+
+button:hover {
+    background: #E06733;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.contacts {
+    width: 1440px;
+    height: 550px;
+    background: #EDF2EC;   
+}
+
+.contacts h2 {
+    position: absolute;
+    width: 195px;
+    left: 50%;
+    margin-left: -97.5px;
+    color: #499A18;
+    font: 40px Inika;
+    font-weight: 700;
+    line-height: 52px;
+    margin-top: 60px;
+}
+
+.contacts-container {
+    width: 1222px;
+    height: 497px;
+    margin: 53px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.city-container {
+    width: 450px;
+    height: 50px;
+    background: #D6E7D2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    margin-top: 95px;
+    display: flex;
+    color: #717171;
+    padding: 0 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.city-container:hover, .prices-item:hover, .service-item:hover {
+    cursor: pointer;
+}
+
+.city-container img {
+    padding-right: 15px;
 }
