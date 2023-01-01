@@ -7,6 +7,11 @@ html {
     margin: 0;
 }
 
+body {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
 .container {
     max-width: 1440px;
     display: flex;
@@ -15,8 +20,6 @@ html {
 }
 
 header {
-    /*position: absolute;*/
-    width: 1440px;
     height: 134px;
     background: #EDF2EC;
     font: 16px Inika;
@@ -51,6 +54,12 @@ nav span {
 nav a {
     text-decoration: none;
     color: #010201;
+    transition: 0.5s;
+}
+
+nav a:hover {
+    color: #E06733;
+    
 }
 
 .logo span {
@@ -110,6 +119,7 @@ h1 span {
 .welcome-section button {
     width: 158px;
     height: 44px;
+    background: #EDF2EC;
     border: 2px solid #E06733;
     border-radius: 10px;
     font-size: 16px;
@@ -118,7 +128,132 @@ h1 span {
     text-align: center;
 }
 
+
+
+.about {
+    width: 1440px;
+    height: 666px;
+    background: #FFFFFF;
+}
+
+.about-section {
+    width: 1222px;
+    height: 479px;
+    display: flex;
+    justify-content: space-between;
+    margin: 93px auto;
+}
+
+.about-section-text {
+    width: 605px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: center;
+    line-height: 30px;
+}
+
+.about-section-text h2 {
+    width: 463px;
+    font: 40px Inika;
+    color: #499A18;
+    line-height: 52px;
+}
+
+.about-section-text span {
+    color: #E06733;
+}
+
+.service {
+    width: 1440px;
+    height: 1300px;
+    background: #EDF2EC;
+}
+
+.services-content {
+    width: 1007px;
+    height: 94px;
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 109px;
+}
+
+.services-content h2 {
+    width: 306px;
+    font: 40px Inika;
+    color: #499A18;
+    line-height: 52px;
+}
+
+.service-btns {
+    width: 559px;
+    height: 50px;
+    margin-top: 29px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.service-btns button {
+    width: 161px;
+    height: 50px;
+    background: #EDF2EC;
+    border: 1px solid #E06733;
+    border-radius: 5px;
+    color: #E06733;
+    font: 20px Inika;
+    text-align: center;
+}
+
 button:hover {
     background: #E06733;
     color: #FFFFFF;
+    cursor: pointer;
+}
+
+.services {
+    width: 1222px;
+    height: 955px;
+    background: #EDF2EC;
+    margin: 90px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.service-item {
+    width: 330px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.service-item img {
+    object-fit: cover;
+    width: 329px;
+    height: 350px;
+    border-radius: 20px 20px 0 0;
+}
+
+.service-item div {
+    width: 330px;
+    height: 100px;
+    background: #EDF2EC;
+    border: 1px solid #E3E1D5;
+    border-radius: 0 0 20px 20px;
+    text-align: center;
+}
+
+.service-item h3 {
+    color: #E06733;
+    font: 20px Inter;
+    font-weight: 700;
+    margin: 10px;
+}
+
+.service-item p {
+    color: #717171;
+    font: 16px Inter;
 }
