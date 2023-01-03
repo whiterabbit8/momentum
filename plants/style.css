@@ -277,7 +277,7 @@ h1 span {
     justify-content: space-between;
 }
 
-.prices-wrapper h2 {
+.prices-wrapper h2, h3 {
     font-size: 40px;
     line-height: 48px;
 }
@@ -392,4 +392,51 @@ button:hover {
 
 .city-container img {
     padding-right: 15px;
+}
+
+footer {
+    width: 1440px;
+    background: #FFFFFF;
+    color: #000000;
+    font: 20px Inter;
+    line-height: 50px;
+}
+
+.footer-container {
+    width: 1222px;
+    height: 50px;
+    margin: 40px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer a {
+    text-decoration: none;
+    color: #000000;
+    transition: 0.5s;
+}
+
+footer a:hover {
+   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.5));
+}
+
+.footer-data {
+    width: 182px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.social-list {
+    width: 188px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}   
+
+.social-list img {
+    display: flex;
+    align-self: center;
+    width: 32px;
+    height: 32px;
 }
