@@ -374,6 +374,7 @@ button:hover {
 }
 
 .city-container {
+    box-sizing: border-box;
     width: 450px;
     height: 50px;
     background: #D6E7D2;
