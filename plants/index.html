@@ -8,7 +8,6 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-        <script src="index.js"></script>
         <title>Plants</title>
     </head>
 
@@ -22,25 +21,31 @@
                             <span>Plants</span>
                         </a>
                     </div>
-                    <nav>
-                        <ul>
-                            <li>
+                    <nav class="header-nav">
+                        <ul class="nav-list">
+                            <li class="nav-item">
                                 <a href="#Home"><span>Home</span></a>
                             </li>
-                            <li>
-                                <a href="#About-us">About us</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#About-us">About us</a>
                             </li>
-                            <li>
-                                <a href="#Service">Service</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#Service">Service</a>
                             </li>
-                            <li>
-                                <a href="#Price">Price</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#Price">Price</a>
                             </li>
-                            <li>
-                                <a href="#Contacts">Contacts</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#Contacts">Contacts</a>
                             </li>
                         </ul>
+                        <div class="burger-menu-close">
+                            <img class="nav-link" src="images/close.png" alt="close">
+                        </div>
                     </nav>
+                    <div class="burger-menu">
+                        <img src="images/burger.png" alt="burger menu">
+                    </div>
                 </div>
             </div>            
         </header>
@@ -180,7 +185,7 @@
                              sizes="(max-width: 380px) 100px,
                                     (max-width: 768px) 200px,
                                     400px"
-                        src="images/contact-woman1-desktop.png" alt="contact woman">
+                        src="images/contact-woman1-desktop.png" alt="contact woman" class="contact-woman-img">
                         <h2 class="contacts-header">Contact us</h2>
                         <div class="city-container">
                             <span>City</span>
@@ -210,4 +215,5 @@
             </div>            
         </footer>
     </body>
+    <script src="index.js"></script>
 </html>

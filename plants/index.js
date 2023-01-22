@@ -1,1 +1,20 @@
-console.log('110 баллов из 110\n 1. Верстка валидная +10\n 2. Верстка семантическая +20\n 3. Верстка соответствует макету +48\n 4. Требования к css +12\n 5. Интерактивность, реализуемая через css +20')
+(function () {
+    const burgerItem = document.querySelector('.burger-menu');
+    const burgerMenu = document.querySelector('.header-nav');
+    const burgerMenuClose = document.querySelector('.burger-menu-close');
+    const navLinks = document.querySelectorAll('.nav-link');
+    burgerItem.addEventListener('click', () => {
+        burgerMenu.classList.add('header-nav-active')
+    });
+    burgerMenuClose.addEventListener('click', () => {
+        burgerMenu.classList.remove('header-nav-active')
+    });
+    if (window.innerWidth <= 380) {
+        for (let i = 0; i < navLinks.length; i += 1) {
+            navLinks[i].addEventListener('click', () => {
+                burgerMenu.classList.remove('header-nav-active');
+            });
+        }
+    }
+}());
+

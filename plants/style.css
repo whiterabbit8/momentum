@@ -75,21 +75,21 @@ header {
     align-items: center;
 }
 
-nav {
+.header-nav {
     width: 452px;    
 }
 
-nav ul {
+.nav-list {
     display: flex;
     justify-content: space-between;
     list-style: none;
 }
 
-nav span {
+.nav-item span {
     color: #E06733;
 }
 
-nav a:hover, a:focus {
+.nav-item a:hover, a:focus {
     color: #E06733;
     transition: 0.5s;
 }
@@ -104,6 +104,11 @@ nav a:hover, a:focus {
     top: 53px;
     width: 20px;
     height: 20px;  
+}
+
+.burger-menu,
+.burger-menu-close {
+    display: none;
 }
 
 /* header styles end */
@@ -387,6 +392,7 @@ footer {
 .footer-container {
     margin: 40px auto;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -421,7 +427,7 @@ footer a:hover {
 
 /* media start */
 
-@media screen and (min-width: 380px) and (max-width: 768px) {
+@media screen and (min-width: 381px) and (max-width: 768px) {
     .wrapper {
         max-width: 768px;
         padding: 0 50px;
@@ -434,6 +440,10 @@ footer a:hover {
     .navbar {
         margin: 0 auto;
         height: 47px;
+    }
+
+    .burger-menu-close {
+        display: none;
     }
 
     .logo img {
@@ -479,7 +489,7 @@ footer a:hover {
 
     .about-section-text p {
         margin: 50px 0 40px 0;
-        height: 208px;
+        min-height: 208px;
     }
 
     .service-content {
@@ -550,7 +560,7 @@ footer a:hover {
         padding-top: 40px;
     }
 
-    .contacts-container img {
+    .contact-woman-img {
         order: 3;
         padding-left: 20px;
     }
@@ -593,6 +603,57 @@ footer a:hover {
         padding: 0 25px;
     }
 
+    header {
+        padding: 36px 0;
+    }
+
+    .navbar {
+        height: 24px;
+        margin: 0;
+    }
+
+    .logo img {
+        top: 33px;
+    }
+
+    .header-nav {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: #EDF2EC;
+        transform: translateX(100%);
+        transition: 0.3s;
+    }
+
+    .header-nav-active {
+        transform: translateX(0);
+    }
+
+    .nav-list {
+        margin-top: 90px;
+        flex-direction: column;
+    }
+
+    .nav-item {
+        padding: 10px 20px;
+        border: 1px solid #D6E7D2;
+    }
+
+    .burger-menu {
+        display: block;
+    }
+
+    .burger-menu-close {
+        display: block;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 30px;
+        right: 30px;
+    }
+
     .welcome-section {
         margin: 24px 0;
     }
@@ -602,6 +663,7 @@ footer a:hover {
     }
 
     .welcome-header {
+        margin-top: 0;
         font-size: 25px;
         line-height: 35px;
     }
@@ -620,14 +682,18 @@ footer a:hover {
     }
 
     .about-section {
-        margin: 30px 0;
+        margin-top: 30px;
+        margin-bottom: 28px;
+        justify-content: center;
         font-size: 15px;
     }
 
     .about-header {
+        margin-top: 0;
+        margin-bottom: 15px;
         font-size: 25px;
         line-height: normal;
-        margin-bottom: 15px;
+        text-align: center;
     }
 
     .about-section-text p {
@@ -637,7 +703,8 @@ footer a:hover {
     }
 
     .service-content {
-        margin: 30px 0;
+        margin-top: 30px;
+        margin-bottom: 29px;
     }
 
     .service-header {
@@ -647,13 +714,32 @@ footer a:hover {
     }
 
     .service-btns {
-        margin-top: 35px;
+        margin-top: 40px;
         max-width: 262px;
     }
 
     .services {
         justify-content: center;
         margin-bottom: 0;
+    }
+
+    .service-item {
+        width: 281px;
+        margin-bottom: 38px;
+    }
+
+    .service-picture, 
+    .service-card {
+        width: 280px;
+    }
+
+    .service-name {
+        margin: 8px;
+    }
+
+    .service-description {
+        width: 203px;
+        margin: 0 auto;
     }
 
     .service-item {
@@ -684,7 +770,7 @@ footer a:hover {
     .prices-items {
         width: 224px;
         height: 235px;
-        margin-top: 40px;
+        margin-top: 37px;
         margin-bottom: 19px;
         padding: 29px 22px;
     }
@@ -704,6 +790,7 @@ footer a:hover {
 
     .call-us-wrapper h3 {
         font-size: 20px;
+        line-height: 35px;
         text-align: center;
     }
 
@@ -718,9 +805,11 @@ footer a:hover {
 
     .contacts-container {
         padding-top: 25px;
+        justify-content: center;
     }
 
     .contacts-header {
+        margin: 0 auto;
         font-size: 25px;
         line-height: normal;
     }
@@ -731,13 +820,21 @@ footer a:hover {
         padding: 0 20px;
     }
 
-    .contacts-container img {
-        padding: 0;
+    .contact-woman-img {
+        order: 3;
     }
 
     .footer-container {
         margin-top: 22px;
         margin-bottom: 7px;
+        justify-content: center;
+        line-height: normal;
+    }
+
+    .footer-data {
+        margin-bottom: 16px;
+        padding: 0;
+        width: 173px;
     }
 
     .social-list {
