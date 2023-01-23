@@ -461,10 +461,6 @@ footer a:hover {
         height: 47px;
     }
 
-    .burger-menu-close {
-        display: none;
-    }
-
     .logo img {
         top: 45px;
     }
@@ -741,10 +737,6 @@ footer a:hover {
     .navbar {
         height: 24px;
         margin: 0;
-    }
-
-    .logo img {
-        top: 33px;
     }
 
     .welcome-section {
