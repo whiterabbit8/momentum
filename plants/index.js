@@ -9,7 +9,7 @@
     burgerMenuClose.addEventListener('click', () => {
         burgerMenu.classList.remove('header-nav-active')
     });
-    if (window.innerWidth <= 380) {
+    if (window.innerWidth <= 660) {
         for (let i = 0; i < navLinks.length; i += 1) {
             navLinks[i].addEventListener('click', () => {
                 burgerMenu.classList.remove('header-nav-active');
