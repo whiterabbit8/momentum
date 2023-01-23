@@ -2,12 +2,12 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="icons/favicon.svg">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-        <script src="index.js"></script>
         <title>Plants</title>
     </head>
 
@@ -17,29 +17,35 @@
                 <div class="navbar">                
                     <div class="logo">
                         <a href="https://rolling-scopes-school.github.io/whiterabbit8-JSFEPRESCHOOL2022Q4/plants/">
-                            <img src="icons/logo.svg" alt="logo" width="20" height="20">
+                            <img src="icons/logo.svg" alt="logo">
                             <span>Plants</span>
                         </a>
                     </div>
-                    <nav>
-                        <ul>
-                            <li>
+                    <nav class="header-nav">
+                        <ul class="nav-list">
+                            <li class="nav-item">
                                 <a href="#Home"><span>Home</span></a>
                             </li>
-                            <li>
-                                <a href="#About-us">About us</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#About-us">About us</a>
                             </li>
-                            <li>
-                                <a href="#Service">Service</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#Service">Service</a>
                             </li>
-                            <li>
-                                <a href="#Price">Price</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#Price">Price</a>
                             </li>
-                            <li>
-                                <a href="#Contacts">Contacts</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#Contacts">Contacts</a>
                             </li>
                         </ul>
+                        <div class="burger-menu-close">
+                            <img class="nav-link" src="images/close.png" alt="close">
+                        </div>
                     </nav>
+                    <div class="burger-menu">
+                        <img src="images/burger.png" alt="burger menu">
+                    </div>
                 </div>
             </div>            
         </header>
@@ -48,7 +54,10 @@
             <section class="welcome">
                 <div class="wrapper">
                     <div class="welcome-section">
-                        <img src="images/leafs.png" alt="leafs" width="449" height="407">
+                        <img srcset="images/leafs-tablet.png 293w,
+                                    images/leafs-desktop.png 462w"
+                            sizes="(max-width: 768px) 280px, 449px" 
+                        src="images/leafs-desktop.png" alt="leafs">
                         <div class="welcome-text">
                             <h1 class="welcome-header">We grow <span>plants</span> and give you oxygen</h1>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -68,7 +77,13 @@
                             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
                             It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
                         </div>
-                        <img src="images/houseplant1.jpg" alt="houseplant1" width="464" height="479"> 
+                        <img srcset="images/houseplant1-mobile.jpg 150w,
+                                    images/houseplant1-tablet.jpg 250w,
+                                    images/houseplant1-desktop.jpg 464w"
+                             sizes="(max-width: 380px) 150px,
+                                    (max-width: 768px) 250px,
+                                    464px" 
+                        src="images/houseplant1-desktop.jpg" alt="houseplant">
                     </div>
                 </div>                
             </section>
@@ -140,23 +155,23 @@
                             <div class="prices-items">
                                 <div class="prices-item">
                                     <span>Basics</span>
-                                    <img src="images/accordion_btn.png" alt="accordion-btn">
+                                    <img src="images/accordion_btn.png" alt="accordion-btn" class="accordion-btn">
                                 </div>
                                 <div class="prices-item">
-                                    <span>Standart</span>
-                                    <img src="images/accordion_btn.png" alt="accordion-btn">
+                                    <span>Standard</span>
+                                    <img src="images/accordion_btn.png" alt="accordion-btn" class="accordion-btn">
                                 </div>
                                 <div class="prices-item">
                                     <span>Pro care</span>
-                                    <img src="images/accordion_btn.png" alt="accordion-btn">
+                                    <img src="images/accordion_btn.png" alt="accordion-btn" class="accordion-btn">
                                 </div>                                
                             </div>
                         </div>
                         <div class="call-us-wrapper">
-                            <h3 class="prices-header">Our best <span>gardeners</span> are ready to help you</h3>
+                            <h3>Our best <span>gardeners</span> are ready to help you</h3>
                             <button class="contact-btn">Contact us</button>
-                        </div>
-                        <img src="images/leafs2.png" alt="leafs" width="152" height="175">
+                            <img src="images/leafs2.png" alt="leafs">
+                        </div>                        
                     </div>
                 </div>                
             </section>
@@ -164,11 +179,17 @@
             <section class="contacts" id="Contacts">
                 <div class="wrapper">                    
                     <div class="contacts-container">
-                        <img src="images/contact_woman1.png" alt="contact-woman" width="400" height="497">
+                        <img srcset="images/contact-woman1-mobile.png 100w,
+                                    images/contact-woman1-tablet.png 200w,
+                                    images/contact-woman1-desktop.png 400w"
+                             sizes="(max-width: 380px) 100px,
+                                    (max-width: 768px) 200px,
+                                    400px"
+                        src="images/contact-woman1-desktop.png" alt="contact woman" class="contact-woman-img">
                         <h2 class="contacts-header">Contact us</h2>
                         <div class="city-container">
                             <span>City</span>
-                            <img src="images/accordion_btn_dark.png" alt="accordion-btn">
+                            <img src="images/accordion_btn_dark.png" alt="accordion-btn" class="accordion-btn">
                         </div>
                     </div>
                 </div>                
@@ -194,4 +215,5 @@
             </div>            
         </footer>
     </body>
+    <script src="index.js"></script>
 </html>
