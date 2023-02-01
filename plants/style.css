@@ -29,6 +29,7 @@ body {
 }
 
 a {
+    display: inline-block;
     text-decoration: none;
     color: inherit;
 }
@@ -48,13 +49,18 @@ button {
     color: #E06733;
     font: 20px Inika;
     text-align: center;
+    transition: 0.3s;
 }
 
-button:hover, button:focus {
+button:hover {
     cursor: pointer;
     background: #E06733;
     color: #FFFFFF;
-    transition: 0.3s;
+}
+
+.button-active {
+    background: #E06733;
+    color: #FFFFFF;
 }
 
 /* header styles strart */
@@ -89,7 +95,7 @@ header {
     color: #E06733;
 }
 
-.nav-item a:hover, a:focus {
+.nav-item a:hover {
     color: #E06733;
     transition: 0.5s;
 }
@@ -156,9 +162,10 @@ header {
     text-transform: uppercase;
     color: #010201;
     text-align: center;
+    transition: 0.3s;
 }
 
-.welcome-section button:hover, button:focus {
+.welcome-section button:hover {
     color: #FFFFFF;
 }
 
@@ -168,7 +175,6 @@ header {
 
 .about-section {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     margin: 93px auto;
 }
@@ -237,6 +243,12 @@ header {
     flex-direction: column;
     align-items: center;
     margin-bottom: 55px;
+    transition: 1s;
+}
+
+.service-item.unactive {
+    filter: blur(2px);
+    transition: 1s;
 }
 
 .service-picture {
@@ -353,7 +365,8 @@ header {
 }
 
 .contacts-header {
-    margin: 7px 64px 0 113px;
+    margin-top: 7px;
+    margin-right: 49px;
     color: #499A18;
     font: 40px Inika;
     font-weight: 700;
@@ -363,6 +376,7 @@ header {
 .contacts-container {
     display: flex;
     padding-top: 53px;
+    justify-content: space-between;
 }
 
 .city-container {
@@ -396,8 +410,9 @@ footer {
 }
 
 footer a:hover {
-   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.5));
-   transition: 0.3s;
+    transform: scale(1.1);
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.5));
+    transition: 0.3s;
 }
 
 .footer-data {
@@ -413,8 +428,12 @@ footer a:hover {
     list-style: none;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }   
+
+.social-list li {
+    display: flex;
+    align-self: center;
+}
 
 .social-list img {
     display: flex;
@@ -426,19 +445,59 @@ footer a:hover {
 
 /* media start */
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1310px) {
+    .city-container {
+        width: 350px;
+    }
+
+    .welcome-section img,
+    .about-section img {
+        transform: scale(0.8);
+    }
+}
+
+@media screen and (max-width: 1250px) {
     .wrapper {
         justify-content: center;
+    }
+    
+    .welcome-section {
+        margin: 40px 0 60px 0;
+    }
+
+    .about-section {
+        margin-top: 40px;
+        margin-bottom: 95px;
+    }
+
+    .service-item {
+        width: 281px;
+        margin-bottom: 38px;
+    }
+
+    .service-picture, 
+    .service-card {
+        width: 280px;
+    }
+
+    .service-description {
+        width: 203px;
+        margin: 0 auto;
     }
     
     .contacts-container {
         flex-wrap: wrap;
         flex-direction: column;
-        align-content: center;
+        align-items: center;
     }
 
     .contacts-header {
         margin: 0 auto;
+    }
+
+    .city-container {
+        margin: 30px auto;
+        width: 450px;
     }
 
     .contact-woman-img {
@@ -446,10 +505,28 @@ footer a:hover {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1110px) {
     .wrapper {
-        max-width: 768px;
-        padding: 0 50px;
+        padding: 0 75px;
+    }
+
+    .about-section {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .services {
+        justify-content: space-around;
+    }
+
+    .service-item {
+        margin: 0 38px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper {
+        padding: 0 60px; 
     }
 
     header {
@@ -467,7 +544,6 @@ footer a:hover {
 
     .welcome-section {
         flex-direction: row-reverse;
-        margin: 40px 0 60px 0;
     }
 
     .welcome-header {
@@ -476,20 +552,15 @@ footer a:hover {
         line-height: 50px;
     }
 
-    .welcome-text {
-        width: 346px;
-    }
-
     .welcome-text p {
         margin: 30px 0 35px 5px;
         font-size: 16px;
         line-height: 25px;
     }
 
-    .about-section {
-        margin-top: 40px;
-        margin-bottom: 95px;
-        justify-content: center;
+    .welcome-section img,
+    .about-section img {
+        transform: none;
     }
 
     .about-header {
@@ -506,7 +577,6 @@ footer a:hover {
     .about-section-text p {
         margin-top: 50px;
         margin-bottom: 40px;
-        min-height: 208px;
     }
 
     .service-content {
@@ -527,21 +597,11 @@ footer a:hover {
 
     .services {
         margin-bottom: 32px;
+        justify-content: space-around;
     }
 
     .service-item {
-        width: 281px;
-        margin-bottom: 38px;
-    }
-
-    .service-picture, 
-    .service-card {
-        width: 280px;
-    }
-
-    .service-description {
-        width: 203px;
-        margin: 0 auto;
+        margin: 0 0 38px 0;
     }
 
     .prices-wrapper {
@@ -564,8 +624,28 @@ footer a:hover {
     }
 
     .call-us-wrapper h3 {
+        margin-left: 20px;
         font-size: 25px;
         line-height: 35px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        max-width: 768px;
+        padding: 0 50px;
+    }
+
+    .welcome-text {
+        width: 346px;
+    }
+
+    .about-section-text p {
+        min-height: 208px;
+    }
+
+    .services {
+        justify-content: space-between;
     }
  
     .contact-btn {
@@ -612,7 +692,7 @@ footer a:hover {
     }
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 680px) {
     header {
         padding: 36px 0;
     }
@@ -658,7 +738,8 @@ footer a:hover {
         right: 0;
         display: flex;
         flex-direction: column;
-        row-gap: 6px;
+        justify-content: space-between;
+        height: 26px;
     }
 
     .burger-line {
@@ -674,11 +755,11 @@ footer a:hover {
     }
 
     .burger-menu.active :first-child {
-        transform: translateY(11px) rotate(45deg);
+        transform: translateY(500%) rotate(45deg);
     }
 
     .burger-menu.active :last-child {
-        transform: translateY(-11px) rotate(-45deg);
+        transform: translateY(-1000%) rotate(-45deg);
     }
 
     body.noscroll {
@@ -695,10 +776,17 @@ footer a:hover {
 
     .service-btns {
         width: fit-content;
+        justify-content: normal;
+    }
+
+    .services {
+        flex-direction: column;
+        align-content: center;
     }
 
     .prices-wrapper {
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .prices-items {
@@ -711,6 +799,10 @@ footer a:hover {
 
     .call-us-wrapper {
         margin-top: 30px;
+    }
+
+    .call-us-wrapper {
+        margin: 0;
     }
 
     .city-container {
@@ -790,6 +882,7 @@ footer a:hover {
     }
 
     .service-btns {
+        justify-content: space-between;
         max-width: 262px;
     }
 
