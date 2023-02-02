@@ -315,9 +315,9 @@ header {
     padding: 34px 41px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    row-gap: 32px;
     width: 334px;
-    height: 284px;
+    min-height: 284px;
     border: 1px solid #E3E1D5;
     border-radius: 20px;
 }
@@ -328,16 +328,99 @@ header {
     background: #EDF2EC;
     border-radius: 20px;
     padding: 0 40px;
+    transition: 0.3s;
+}
+
+.prices-item.active {
+    height: 154px;
+    display: flex;
+    flex-direction: column;
+    background-color: #D6E7D2;
+}
+
+.prices-item:not(.prices-item.active) .prices-item-body {
+    display: none;
+}
+
+.prices-item-name {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 20px;
+    line-height: 20px;
+    margin-top: 16px;
 }
 
 .accordion-btn {
+    cursor: pointer;
+    width: 17px;
+    height: 17px;
+    background: url('images/accordion_btn.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: 0.3s;
+    transform: rotate(180deg);
+}
+
+.accordion-btn.active {
+    background: url('images/accordion_btn_dark.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.price-line {
+    width: 164px;
+    height: 0.5px;
+    background: #AEA1A1;
+    margin-top: 9px;
+}
+
+.prices-item-description {
+    margin: 6px 0;
+    line-height: 10px;
+    font-size: 10px;
+    font-weight: 300;
+    color: #717171;
+}
+
+.prices-item-price {
+    height: 17px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.prices-item-price span {
+    color: #E06733;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.prices-item-price span:first-child {
+    font-size: 12px;
+}
+
+.order-btn {
+    margin: 12px 0;
+    padding: 3px 20px;
+    width: 86px;
+    height: 25px;
+    border: none;
+    border-radius: 10px;
+    font: 14px Inter;
+    font-weight: 700;
+    line-height: 20px;
+    background: #FFFFFF;
+    color: #717171;
+    text-align: center;
+}
+
+/*.accordion-btn {
+    position: absolute;
+    top: 17px;
+    right: 40px;
     width: 16px;
     height: 16px;
-}
+}*/
 
 .call-us-wrapper {
     width: 452px;
