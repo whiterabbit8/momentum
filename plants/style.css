@@ -29,8 +29,13 @@ body {
 }
 
 a {
+    display: inline-block;
     text-decoration: none;
     color: inherit;
+}
+
+li {
+    list-style: none;
 }
 
 img {
@@ -48,13 +53,20 @@ button {
     color: #E06733;
     font: 20px Inika;
     text-align: center;
+    transition: 0.3s;
 }
 
-button:hover, button:focus {
-    cursor: pointer;
+@media (hover :hover) {
+    button:hover {
+        cursor: pointer;
+        background: #E06733;
+        color: #FFFFFF;
+    }
+}
+
+.button-active {
     background: #E06733;
     color: #FFFFFF;
-    transition: 0.3s;
 }
 
 /* header styles strart */
@@ -89,9 +101,11 @@ header {
     color: #E06733;
 }
 
-.nav-item a:hover, a:focus {
-    color: #E06733;
-    transition: 0.5s;
+@media (hover: hover) {
+    .nav-item a:hover {
+        color: #E06733;
+        transition: 0.5s;
+    }
 }
 
 .logo span {
@@ -156,10 +170,14 @@ header {
     text-transform: uppercase;
     color: #010201;
     text-align: center;
+    transition: 0.3s;
 }
 
-.welcome-section button:hover, button:focus {
-    color: #FFFFFF;
+@media (hover: hover) {
+    .welcome-section button:hover,
+    .city-card button:hover {
+        color: #FFFFFF;
+    }
 }
 
 /* welcome section styles end */
@@ -168,7 +186,6 @@ header {
 
 .about-section {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     margin: 93px auto;
 }
@@ -237,6 +254,12 @@ header {
     flex-direction: column;
     align-items: center;
     margin-bottom: 55px;
+    transition: 1s;
+}
+
+.service-item.unactive {
+    filter: blur(2px);
+    transition: 1s;
 }
 
 .service-picture {
@@ -303,28 +326,103 @@ header {
     padding: 34px 41px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    row-gap: 32px;
     width: 334px;
-    height: 284px;
+    min-height: 284px;
     border: 1px solid #E3E1D5;
     border-radius: 20px;
 }
 
 .prices-item {
+    cursor: pointer;
     width: 250px;
     height: 50px;
     background: #EDF2EC;
     border-radius: 20px;
     padding: 0 40px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.prices-item.active {
+    height: 154px;
+    display: flex;
+    flex-direction: column;
+    background-color: #D6E7D2;
+}
+
+.prices-item:not(.prices-item.active) .prices-item-body {
+    display: none;
+}
+
+.prices-item-name {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px;
+    line-height: 20px;
+    margin-top: 16px;
 }
 
 .accordion-btn {
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 17px;
+    background: url('images/accordion_btn.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: 0.3s;
+}
+
+.prices-item.active .accordion-btn {
+    background: url('images/accordion_btn_dark.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(180deg);
+}
+
+.price-line {
+    max-width: 164px;
+    height: 0.5px;
+    background: #AEA1A1;
+    margin-top: 9px;
+}
+
+.prices-item-description {
+    margin: 6px 0;
+    line-height: 10px;
+    font-size: 10px;
+    font-weight: 300;
+    color: #717171;
+}
+
+.prices-item-price {
+    height: 17px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.prices-item-price span {
+    color: #E06733;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.prices-item-price span:first-child {
+    font-size: 12px;
+}
+
+.order-btn {
+    margin: 12px 0;
+    padding: 3px 20px;
+    width: 86px;
+    height: 25px;
+    border: none;
+    border-radius: 10px;
+    font: 14px Inter;
+    font-weight: 700;
+    line-height: 20px;
+    background: #FFFFFF;
+    color: #717171;
+    text-align: center;
 }
 
 .call-us-wrapper {
@@ -353,7 +451,8 @@ header {
 }
 
 .contacts-header {
-    margin: 7px 64px 0 113px;
+    margin-top: 7px;
+    margin-right: 49px;
     color: #499A18;
     font: 40px Inika;
     font-weight: 700;
@@ -363,18 +462,155 @@ header {
 .contacts-container {
     display: flex;
     padding-top: 53px;
+    justify-content: space-between;
 }
 
-.city-container {
+@keyframes slideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+.selection-menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 450px;
+    margin-top: 95px;
+    margin-bottom: 47px;
+    color: #717171;
+    letter-spacing: 0.05em;
+    transition: 0.3s ease-in-out;
+}
+
+.select-container {
+    max-width: 450px;
     height: 50px;
     display: flex;
-    margin: 95px 0;
-    padding: 0 35px 0 20px;
     align-items: center;
     justify-content: space-between;
+    padding: 5px 35px 5px 20px;
     background: #D6E7D2;
     box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.selection-menu.active .select-container {
+    max-width: 451px;
+    background: #C1E698;
+    border: 1px solid #D6E7D2;
+    box-shadow: none;
+}
+
+.city-accordion-btn {
+    cursor: pointer;
+    width: 17px;
+    height: 17px;
+    background: url('images/accordion_btn_dark.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: 0.3s;
+}
+
+.selection-menu.active .city-accordion-btn {
+    background: url('images/accordion_btn_green.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(180deg);
+}
+
+.selection-menu-body {
+    display: none;
+    position: absolute;
+    top: 50px;
+    width: 450px;
+    padding-top: 15px;
+    padding-bottom: 31px;
+    background: #D6E7D2;
+}
+
+.selection-menu.active .selection-menu-body {
+    display: block;
+    animation: slideDown 300ms ease-in-out;
+}
+           
+.selection.active {
+    font-size: 16px;
+}
+
+.option {
+    height: 35px;
+    margin-left: 26px;
+    margin-top: 12px;
+    color: #499A18;
+    font-size: 16px;
+    line-height: 40px;
+    transition: 0.3s;
+}
+
+.option-underline {
+    max-width: 380px;
+    height: 1px;
+    margin-top: -6px;
+    margin-left: -6px;
+    margin-right: 50px;
+    background: #D9D9D9;
+    transition: 0.3s;
+}
+
+@media (hover: hover) {
+    .option:hover {
+        cursor: pointer;
+        color: #717171;
+    }
+
+    .option:hover .option-underline {
+        background: #717171;
+    }
+}
+
+.city-card.show {
+    display: flex;
+}
+
+.city-card {
+    display: none;
+    flex-wrap: wrap;
+    width: 448px;
+    height: 214px;
+    margin-top: 47px;
+    margin-bottom: 14px;
+    padding: 17px 76px 32px 33px;
+    line-height: 40px;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    background: transparent;
+}
+
+.card-option {
+    width: 127px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+    color: #000000;
+}
+
+.info {
+    width: 203px;
+}
+
+.city-card button {
+    width: 122px;
+    height: 26px;
+    margin: 18px 0 0 129px;
+    font-size: 10px;
     color: #717171;
 }
 
@@ -395,9 +631,12 @@ footer {
     justify-content: space-between;
 }
 
-footer a:hover {
-   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.5));
-   transition: 0.3s;
+@media (hover: hover) {
+    footer a:hover {
+        transform: scale(1.1);
+        filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.5));
+        transition: 0.3s;
+    }
 }
 
 .footer-data {
@@ -413,8 +652,12 @@ footer a:hover {
     list-style: none;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }   
+
+.social-list li {
+    display: flex;
+    align-self: center;
+}
 
 .social-list img {
     display: flex;
@@ -426,15 +669,17 @@ footer a:hover {
 
 /* media start */
 
-@media screen and (max-width: 1200px) {
-    .wrapper {
-        justify-content: center;
+@media screen and (max-width: 1310px) {
+
+    .welcome-section img,
+    .about-section img {
+        transform: scale(0.8);
     }
-    
+
     .contacts-container {
         flex-wrap: wrap;
         flex-direction: column;
-        align-content: center;
+        align-items: center;
     }
 
     .contacts-header {
@@ -446,10 +691,58 @@ footer a:hover {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1250px) {
     .wrapper {
-        max-width: 768px;
-        padding: 0 50px;
+        justify-content: center;
+    }
+    
+    .welcome-section {
+        margin: 40px 0 60px 0;
+    }
+
+    .about-section {
+        margin-top: 40px;
+        margin-bottom: 95px;
+    }
+
+    .service-item {
+        width: 281px;
+        margin-bottom: 38px;
+    }
+
+    .service-picture, 
+    .service-card {
+        width: 280px;
+    }
+
+    .service-description {
+        width: 203px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 1110px) {
+    .wrapper {
+        padding: 0 75px;
+    }
+
+    .about-section {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .services {
+        justify-content: space-around;
+    }
+
+    .service-item {
+        margin: 0 38px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper {
+        padding: 0 60px; 
     }
 
     header {
@@ -467,7 +760,6 @@ footer a:hover {
 
     .welcome-section {
         flex-direction: row-reverse;
-        margin: 40px 0 60px 0;
     }
 
     .welcome-header {
@@ -476,20 +768,15 @@ footer a:hover {
         line-height: 50px;
     }
 
-    .welcome-text {
-        width: 346px;
-    }
-
     .welcome-text p {
         margin: 30px 0 35px 5px;
         font-size: 16px;
         line-height: 25px;
     }
 
-    .about-section {
-        margin-top: 40px;
-        margin-bottom: 95px;
-        justify-content: center;
+    .welcome-section img,
+    .about-section img {
+        transform: none;
     }
 
     .about-header {
@@ -506,7 +793,6 @@ footer a:hover {
     .about-section-text p {
         margin-top: 50px;
         margin-bottom: 40px;
-        min-height: 208px;
     }
 
     .service-content {
@@ -527,21 +813,11 @@ footer a:hover {
 
     .services {
         margin-bottom: 32px;
+        justify-content: space-around;
     }
 
     .service-item {
-        width: 281px;
-        margin-bottom: 38px;
-    }
-
-    .service-picture, 
-    .service-card {
-        width: 280px;
-    }
-
-    .service-description {
-        width: 203px;
-        margin: 0 auto;
+        margin: 0 0 38px 0;
     }
 
     .prices-wrapper {
@@ -564,8 +840,28 @@ footer a:hover {
     }
 
     .call-us-wrapper h3 {
+        margin-left: 20px;
         font-size: 25px;
         line-height: 35px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        max-width: 768px;
+        padding: 0 50px;
+    }
+
+    .welcome-text {
+        width: 346px;
+    }
+
+    .about-section-text p {
+        min-height: 208px;
+    }
+
+    .services {
+        justify-content: space-between;
     }
  
     .contact-btn {
@@ -588,9 +884,18 @@ footer a:hover {
         margin: 0 auto;
     }
 
-    .city-container {
+    .selection-menu {
         margin-top: 100px;
         margin-bottom: 250px;
+    }
+
+    .selection-menu.move {
+        margin-top: 61px;
+        margin-bottom: 14px;
+    }
+
+    .city-card {
+        margin-top: 61px;
     }
     
     .footer-container {
@@ -612,7 +917,7 @@ footer a:hover {
     }
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 680px) {
     header {
         padding: 36px 0;
     }
@@ -658,7 +963,8 @@ footer a:hover {
         right: 0;
         display: flex;
         flex-direction: column;
-        row-gap: 6px;
+        justify-content: space-between;
+        height: 26px;
     }
 
     .burger-line {
@@ -674,11 +980,11 @@ footer a:hover {
     }
 
     .burger-menu.active :first-child {
-        transform: translateY(11px) rotate(45deg);
+        transform: translateY(12px) rotate(45deg);
     }
 
     .burger-menu.active :last-child {
-        transform: translateY(-11px) rotate(-45deg);
+        transform: translateY(-12px) rotate(-45deg);
     }
 
     body.noscroll {
@@ -695,10 +1001,17 @@ footer a:hover {
 
     .service-btns {
         width: fit-content;
+        justify-content: normal;
+    }
+
+    .services {
+        flex-direction: column;
+        align-content: center;
     }
 
     .prices-wrapper {
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .prices-items {
@@ -709,12 +1022,55 @@ footer a:hover {
         width: 216px;
     }
 
+    .prices-item.active {
+        height: 163px;
+    }
+
     .call-us-wrapper {
         margin-top: 30px;
     }
 
-    .city-container {
-        max-width: 300px;
+    .call-us-wrapper h3 {
+        margin: 0;
+    }
+
+    .selection-menu {
+        width: 300px;
+    }
+
+    .select-container {
+        width: 300px;
+    }
+
+    .selection-menu-body {
+        width: 300px;
+    }
+
+    .city-card {
+        padding: 21px 36px;
+        width: 282px;
+        height: 212px;
+    }
+
+    .card-option {
+        width: 60px;
+    }
+
+    .card-option div:last-child {
+        line-height: 20px;
+    }
+
+    .info div:last-child {
+        line-height: 20px;
+        padding-left: 3px;
+    }
+
+    .info {
+        width: 143px;
+    }
+
+    .city-card button {
+        margin-left: 50px;
     }
 }
 
@@ -790,6 +1146,7 @@ footer a:hover {
     }
 
     .service-btns {
+        justify-content: space-between;
         max-width: 262px;
     }
 
@@ -829,10 +1186,11 @@ footer a:hover {
 
     .prices-items {
         width: 224px;
-        height: 235px;
+        min-height: 235px;
         margin-top: 37px;
         margin-bottom: 19px;
         padding: 29px 22px;
+        row-gap: 14px;
     }
 
     .prices-item {
@@ -840,6 +1198,10 @@ footer a:hover {
         height: 50px;
         padding-left: 30px;
         font-size: 15px;
+    }
+
+    .prices-item.active {
+        height: 173px;
     }
 
     .call-us-wrapper {
@@ -872,14 +1234,30 @@ footer a:hover {
         line-height: normal;
     }
 
-    .city-container {
+    .selection-menu {
         margin-top: 80px;
         margin-bottom: 132px;
-        padding: 0 20px;
+    }
+
+    .select-container {
+        padding: 5px 20px;
+    }
+
+    .city-card {
+        margin-top: 49px;
     }
 
     .contact-woman-img {
         padding: 0;
+    }
+
+    .contact-woman-img.hide {
+        display: none;
+    }
+
+    .selection-menu.move {
+        margin-top: 42px;
+        margin-bottom: 33px;
     }
 
     .footer-container {
@@ -894,7 +1272,7 @@ footer a:hover {
 }
 
 @media screen and (max-width: 350px) {
-    .city-container {
+    .selection-menu {
         width: 250px;
     }
 }
