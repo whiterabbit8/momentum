@@ -34,6 +34,10 @@ a {
     color: inherit;
 }
 
+li {
+    list-style: none;
+}
+
 img {
     max-width: 100%;
     height: 100%;
@@ -52,10 +56,12 @@ button {
     transition: 0.3s;
 }
 
-button:hover {
-    cursor: pointer;
-    background: #E06733;
-    color: #FFFFFF;
+@media (hover :hover) {
+    button:hover {
+        cursor: pointer;
+        background: #E06733;
+        color: #FFFFFF;
+    }
 }
 
 .button-active {
@@ -95,9 +101,11 @@ header {
     color: #E06733;
 }
 
-.nav-item a:hover {
-    color: #E06733;
-    transition: 0.5s;
+@media (hover: hover) {
+    .nav-item a:hover {
+        color: #E06733;
+        transition: 0.5s;
+    }
 }
 
 .logo span {
@@ -165,8 +173,11 @@ header {
     transition: 0.3s;
 }
 
-.welcome-section button:hover {
-    color: #FFFFFF;
+@media (hover: hover) {
+    .welcome-section button:hover,
+    .city-card button:hover {
+        color: #FFFFFF;
+    }
 }
 
 /* welcome section styles end */
@@ -323,11 +334,13 @@ header {
 }
 
 .prices-item {
+    cursor: pointer;
     width: 250px;
     height: 50px;
     background: #EDF2EC;
     border-radius: 20px;
     padding: 0 40px;
+    font-size: 20px;
     transition: 0.3s;
 }
 
@@ -346,30 +359,28 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px;
     line-height: 20px;
     margin-top: 16px;
 }
 
 .accordion-btn {
-    cursor: pointer;
     width: 17px;
     height: 17px;
     background: url('images/accordion_btn.svg');
     background-repeat: no-repeat;
     background-size: contain;
     transition: 0.3s;
-    transform: rotate(180deg);
 }
 
-.accordion-btn.active {
+.prices-item.active .accordion-btn {
     background: url('images/accordion_btn_dark.svg');
     background-repeat: no-repeat;
     background-size: contain;
+    transform: rotate(180deg);
 }
 
 .price-line {
-    width: 164px;
+    max-width: 164px;
     height: 0.5px;
     background: #AEA1A1;
     margin-top: 9px;
@@ -391,8 +402,8 @@ header {
 
 .prices-item-price span {
     color: #E06733;
-    font-weight: 700;
     font-size: 16px;
+    font-weight: 700;
 }
 
 .prices-item-price span:first-child {
@@ -413,14 +424,6 @@ header {
     color: #717171;
     text-align: center;
 }
-
-/*.accordion-btn {
-    position: absolute;
-    top: 17px;
-    right: 40px;
-    width: 16px;
-    height: 16px;
-}*/
 
 .call-us-wrapper {
     width: 452px;
@@ -462,16 +465,152 @@ header {
     justify-content: space-between;
 }
 
-.city-container {
+@keyframes slideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+.selection-menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 450px;
+    margin-top: 95px;
+    margin-bottom: 47px;
+    color: #717171;
+    letter-spacing: 0.05em;
+    transition: 0.3s ease-in-out;
+}
+
+.select-container {
+    max-width: 450px;
     height: 50px;
     display: flex;
-    margin: 95px 0;
-    padding: 0 35px 0 20px;
     align-items: center;
     justify-content: space-between;
+    padding: 5px 35px 5px 20px;
     background: #D6E7D2;
     box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.selection-menu.active .select-container {
+    max-width: 451px;
+    background: #C1E698;
+    border: 1px solid #D6E7D2;
+    box-shadow: none;
+}
+
+.city-accordion-btn {
+    cursor: pointer;
+    width: 17px;
+    height: 17px;
+    background: url('images/accordion_btn_dark.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: 0.3s;
+}
+
+.selection-menu.active .city-accordion-btn {
+    background: url('images/accordion_btn_green.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(180deg);
+}
+
+.selection-menu-body {
+    display: none;
+    position: absolute;
+    top: 50px;
+    width: 450px;
+    padding-top: 15px;
+    padding-bottom: 31px;
+    background: #D6E7D2;
+}
+
+.selection-menu.active .selection-menu-body {
+    display: block;
+    animation: slideDown 300ms ease-in-out;
+}
+           
+.selection.active {
+    font-size: 16px;
+}
+
+.option {
+    height: 35px;
+    margin-left: 26px;
+    margin-top: 12px;
+    color: #499A18;
+    font-size: 16px;
+    line-height: 40px;
+    transition: 0.3s;
+}
+
+.option-underline {
+    max-width: 380px;
+    height: 1px;
+    margin-top: -6px;
+    margin-left: -6px;
+    margin-right: 50px;
+    background: #D9D9D9;
+    transition: 0.3s;
+}
+
+@media (hover: hover) {
+    .option:hover {
+        cursor: pointer;
+        color: #717171;
+    }
+
+    .option:hover .option-underline {
+        background: #717171;
+    }
+}
+
+.city-card.show {
+    display: flex;
+}
+
+.city-card {
+    display: none;
+    flex-wrap: wrap;
+    width: 448px;
+    height: 214px;
+    margin-top: 47px;
+    margin-bottom: 14px;
+    padding: 17px 76px 32px 33px;
+    line-height: 40px;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    background: transparent;
+}
+
+.card-option {
+    width: 127px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+    color: #000000;
+}
+
+.info {
+    width: 203px;
+}
+
+.city-card button {
+    width: 122px;
+    height: 26px;
+    margin: 18px 0 0 129px;
+    font-size: 10px;
     color: #717171;
 }
 
@@ -492,10 +631,12 @@ footer {
     justify-content: space-between;
 }
 
-footer a:hover {
-    transform: scale(1.1);
-    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.5));
-    transition: 0.3s;
+@media (hover: hover) {
+    footer a:hover {
+        transform: scale(1.1);
+        filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.5));
+        transition: 0.3s;
+    }
 }
 
 .footer-data {
@@ -529,13 +670,24 @@ footer a:hover {
 /* media start */
 
 @media screen and (max-width: 1310px) {
-    .city-container {
-        width: 350px;
-    }
 
     .welcome-section img,
     .about-section img {
         transform: scale(0.8);
+    }
+
+    .contacts-container {
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contacts-header {
+        margin: 0 auto;
+    }
+
+    .contact-woman-img {
+        order: 3;
     }
 }
 
@@ -566,25 +718,6 @@ footer a:hover {
     .service-description {
         width: 203px;
         margin: 0 auto;
-    }
-    
-    .contacts-container {
-        flex-wrap: wrap;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .contacts-header {
-        margin: 0 auto;
-    }
-
-    .city-container {
-        margin: 30px auto;
-        width: 450px;
-    }
-
-    .contact-woman-img {
-        order: 3;
     }
 }
 
@@ -751,9 +884,18 @@ footer a:hover {
         margin: 0 auto;
     }
 
-    .city-container {
+    .selection-menu {
         margin-top: 100px;
         margin-bottom: 250px;
+    }
+
+    .selection-menu.move {
+        margin-top: 61px;
+        margin-bottom: 14px;
+    }
+
+    .city-card {
+        margin-top: 61px;
     }
     
     .footer-container {
@@ -838,11 +980,11 @@ footer a:hover {
     }
 
     .burger-menu.active :first-child {
-        transform: translateY(500%) rotate(45deg);
+        transform: translateY(12px) rotate(45deg);
     }
 
     .burger-menu.active :last-child {
-        transform: translateY(-1000%) rotate(-45deg);
+        transform: translateY(-12px) rotate(-45deg);
     }
 
     body.noscroll {
@@ -880,16 +1022,55 @@ footer a:hover {
         width: 216px;
     }
 
+    .prices-item.active {
+        height: 163px;
+    }
+
     .call-us-wrapper {
         margin-top: 30px;
     }
 
-    .call-us-wrapper {
+    .call-us-wrapper h3 {
         margin: 0;
     }
 
-    .city-container {
-        max-width: 300px;
+    .selection-menu {
+        width: 300px;
+    }
+
+    .select-container {
+        width: 300px;
+    }
+
+    .selection-menu-body {
+        width: 300px;
+    }
+
+    .city-card {
+        padding: 21px 36px;
+        width: 282px;
+        height: 212px;
+    }
+
+    .card-option {
+        width: 60px;
+    }
+
+    .card-option div:last-child {
+        line-height: 20px;
+    }
+
+    .info div:last-child {
+        line-height: 20px;
+        padding-left: 3px;
+    }
+
+    .info {
+        width: 143px;
+    }
+
+    .city-card button {
+        margin-left: 50px;
     }
 }
 
@@ -1005,10 +1186,11 @@ footer a:hover {
 
     .prices-items {
         width: 224px;
-        height: 235px;
+        min-height: 235px;
         margin-top: 37px;
         margin-bottom: 19px;
         padding: 29px 22px;
+        row-gap: 14px;
     }
 
     .prices-item {
@@ -1016,6 +1198,10 @@ footer a:hover {
         height: 50px;
         padding-left: 30px;
         font-size: 15px;
+    }
+
+    .prices-item.active {
+        height: 173px;
     }
 
     .call-us-wrapper {
@@ -1048,14 +1234,30 @@ footer a:hover {
         line-height: normal;
     }
 
-    .city-container {
+    .selection-menu {
         margin-top: 80px;
         margin-bottom: 132px;
-        padding: 0 20px;
+    }
+
+    .select-container {
+        padding: 5px 20px;
+    }
+
+    .city-card {
+        margin-top: 49px;
     }
 
     .contact-woman-img {
         padding: 0;
+    }
+
+    .contact-woman-img.hide {
+        display: none;
+    }
+
+    .selection-menu.move {
+        margin-top: 42px;
+        margin-bottom: 33px;
     }
 
     .footer-container {
@@ -1070,7 +1272,7 @@ footer a:hover {
 }
 
 @media screen and (max-width: 350px) {
-    .city-container {
+    .selection-menu {
         width: 250px;
     }
 }

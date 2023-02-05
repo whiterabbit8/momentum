@@ -1,3 +1,5 @@
+console.log('125 баллов\n1. При нажатии на кнопки:Gargens,Lawn,Planting происходит смена фокуса на услугах в разделе service +50\n2. Accordion в секции prices реализация 3-х выпадающих списков об услугах и ценах +50\n3. В разделе contacts реализован select с выбором городов +25');
+
 const burger = document.querySelector('.burger-menu');
 const menu = document.querySelector('.header-nav');
 const page = document.querySelector('.main-container');
@@ -42,10 +44,6 @@ srvBtn.forEach(btn => {
         else {
             srvBtn.forEach(b => b.disabled = false)
         }
-        /*console.log(buttonCounter);
-        console.log(srvBtn[0].disabled === true);
-        console.log(srvBtn[1].disabled === true);
-        console.log(srvBtn[2].disabled === true);*/
     })
 })
 
@@ -56,7 +54,6 @@ srvBtn.forEach(btn => {
         }
         else if ((btn.classList.contains('button-active')) && (buttonCounter <= 1)) {
             srvItems.forEach(item => item.classList.add('unactive'))
-            //console.log('размываю все')
         }
     })
 })
@@ -85,22 +82,67 @@ srvBtn[2].addEventListener('click', () => {
     })
 })
 
-const accrdBtn = document.querySelectorAll('.accordion-btn');
-const pricesItem = document.querySelectorAll('.prices-item');
-let itemsCount = 0;
-for (let i = 0; i < accrdBtn.length; i++) {
-    accrdBtn[i].addEventListener('click', () => {
-        if (accrdBtn[i].classList.contains('active')) {
-            accrdBtn[i].classList.toggle('active');
-            pricesItem[i].classList.toggle('active');
+document.querySelectorAll('.prices-item').forEach(item => {
+    item.addEventListener('click', () => {
+        if (item.classList.contains('active')) {
+            item.classList.toggle('active');
         }
         else {
-            accrdBtn.forEach(btn => btn.classList.remove('active'));
-            pricesItem.forEach(item => item.classList.remove('active'));
-            accrdBtn[i].classList.toggle('active');
-            pricesItem[i].classList.toggle('active');
-        } 
+            document.querySelectorAll('.prices-item').forEach(item => item.classList.remove('active'));
+            item.classList.toggle('active');
+        }
     })
-}
+})
+
+document.querySelector('.select-container').addEventListener('click', () => {
+    document.querySelector('.selection-menu').classList.toggle('active');
+})
+
+const cityOption = document.querySelectorAll('.option');
+const cardInfo = document.querySelectorAll('.info div');
+let phoneNumber = document.getElementById('phone');
+
+cityOption.forEach(option => {
+    option.addEventListener('click', () => {
+        document.querySelector('.selection').innerHTML = option.textContent;
+        document.querySelector('.selection').classList.add('active');
+        document.querySelector('.selection-menu').classList.remove('active');
+        document.querySelector('.selection-menu').classList.add('move');
+        document.querySelector('.contact-woman-img').classList.add('hide');
+        document.querySelector('.city-card').classList.add('show');
+    })
+})
+
+for (let i = 0; i < cityOption.length; i++) {
+    cityOption[i].addEventListener('click', () => {
+        switch (i) {
+            case 0:
+                let info0 = ['Canandaigua, NY', '+1 585 393 0001', '151 Charlotte Street'];
+                for (let j = 0; j < cardInfo.length; j++) {
+                    cardInfo[j].innerHTML = info0[j];
+                }
+                phoneNumber.setAttribute('href', `tel:${info[1]}`);
+            case 1:
+                let info1 = ['New York City', '+1 212 456 0002', '9 East 91st Street'];
+                for (let j = 0; j < cardInfo.length; j++) {
+                    cardInfo[j].innerHTML = info1[j];
+                }
+                phoneNumber.setAttribute('href', `tel:${info[1]}`);
+            case 2:
+                let info2 = ['Yonkers, NY', '+1 914 678 0003', '511 Warburton Ave'];
+                for (let j = 0; j < cardInfo.length; j++) {
+                    cardInfo[j].innerHTML = info2[j];
+                }
+                phoneNumber.setAttribute('href', `tel:${info[1]}`);
+            case 3:
+                let info3 = ['Sherrill, NY', '+1	315	908 0004', '14 WEST Noyes BLVD'];
+                for (let j = 0; j < cardInfo.length; j++) {
+                    cardInfo[j].innerHTML = info3[j];
+                }
+                phoneNumber.setAttribute('href', `tel:${info[1]}`);
+        }
+    });
+} 
+
 
 
