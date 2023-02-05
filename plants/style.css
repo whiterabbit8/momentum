@@ -670,7 +670,6 @@ footer {
 /* media start */
 
 @media screen and (max-width: 1310px) {
-
     .welcome-section img,
     .about-section img {
         transform: scale(0.8);
@@ -684,6 +683,11 @@ footer {
 
     .contacts-header {
         margin: 0 auto;
+    }
+
+    .city-container {
+        margin: 30px auto;
+        width: 450px;
     }
 
     .contact-woman-img {

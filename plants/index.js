@@ -142,7 +142,4 @@ for (let i = 0; i < cityOption.length; i++) {
                 phoneNumber.setAttribute('href', `tel:${info[1]}`);
         }
     });
-} 
-
-
-
+}
