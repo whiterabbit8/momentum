@@ -452,7 +452,7 @@ header {
 
 .contacts-header {
     margin-top: 7px;
-    margin-right: 49px;
+    margin-left: 49px;
     color: #499A18;
     font: 40px Inika;
     font-weight: 700;
@@ -490,7 +490,7 @@ header {
 }
 
 .select-container {
-    max-width: 450px;
+    width: 450px;
     height: 50px;
     display: flex;
     align-items: center;
@@ -501,7 +501,7 @@ header {
 }
 
 .selection-menu.active .select-container {
-    max-width: 451px;
+    width: 451px;
     background: #C1E698;
     border: 1px solid #D6E7D2;
     box-shadow: none;

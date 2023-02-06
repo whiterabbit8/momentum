@@ -82,17 +82,19 @@ srvBtn[2].addEventListener('click', () => {
     })
 })
 
-document.querySelectorAll('.prices-item').forEach(item => {
-    item.addEventListener('click', () => {
-        if (item.classList.contains('active')) {
-            item.classList.toggle('active');
+const pricesItems = document.querySelectorAll('.prices-item');
+
+for (let i = 0; i < pricesItems.length; i++) {
+    document.querySelectorAll('.prices-item-name')[i].addEventListener('click', () => {
+        if (pricesItems[i].classList.contains('active')) {
+            pricesItems[i].classList.toggle('active');
         }
         else {
-            document.querySelectorAll('.prices-item').forEach(item => item.classList.remove('active'));
-            item.classList.toggle('active');
+            pricesItems.forEach(item => item.classList.remove('active'));
+            pricesItems[i].classList.toggle('active');
         }
     })
-})
+}
 
 document.querySelector('.select-container').addEventListener('click', () => {
     document.querySelector('.selection-menu').classList.toggle('active');
