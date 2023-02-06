@@ -351,6 +351,10 @@ header {
     background-color: #D6E7D2;
 }
 
+.prices-wrapper.margin {
+    margin-bottom: 11px;
+}
+
 .prices-item:not(.prices-item.active) .prices-item-body {
     display: none;
 }
@@ -501,7 +505,7 @@ header {
 }
 
 .selection-menu.active .select-container {
-    width: 451px;
+    max-width: 451px;
     background: #C1E698;
     border: 1px solid #D6E7D2;
     box-shadow: none;

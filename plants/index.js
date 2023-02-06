@@ -6,25 +6,25 @@ const page = document.querySelector('.main-container');
 const menuItems = document.querySelectorAll('.nav-link');
 const body = document.body;
 
-burger.addEventListener('click', function() {
+burger.addEventListener('click', () => {
     burger.classList.toggle('active');
     menu.classList.toggle('active');
     body.classList.toggle('noscroll');
 })
 
-page.addEventListener('click', function() {
+page.addEventListener('click', () => {
     burger.classList.remove('active');
     menu.classList.remove('active');
     body.classList.remove('noscroll');
 })
 
-for (let i = 0; i < menuItems.length; i ++) {
-    menuItems[i].addEventListener('click', function() {
+menuItems.forEach(item => {
+    item.addEventListener('click', () => {
         burger.classList.remove('active');
         menu.classList.remove('active');
         body.classList.remove('noscroll');
     })
-}
+})
 
 const srvBtn = document.querySelectorAll('.service-btns button');
 const srvItems = document.querySelectorAll('.service-item');
@@ -93,6 +93,14 @@ for (let i = 0; i < pricesItems.length; i++) {
             pricesItems.forEach(item => item.classList.remove('active'));
             pricesItems[i].classList.toggle('active');
         }
+        pricesItems.forEach(item => {
+            if (item.classList.contains('active')) {
+                document.querySelector('.prices-wrapper').classList.add('margin');
+            }
+            else {
+                document.querySelector('.prices-wrapper').classList.remove('margin');
+            }
+        })
     })
 }
 
@@ -123,25 +131,25 @@ for (let i = 0; i < cityOption.length; i++) {
                 for (let j = 0; j < cardInfo.length; j++) {
                     cardInfo[j].innerHTML = info0[j];
                 }
-                phoneNumber.setAttribute('href', `tel:${info[1]}`);
+                phoneNumber.setAttribute('href', `tel:${info0[1]}`);
             case 1:
                 let info1 = ['New York City', '+1 212 456 0002', '9 East 91st Street'];
                 for (let j = 0; j < cardInfo.length; j++) {
                     cardInfo[j].innerHTML = info1[j];
                 }
-                phoneNumber.setAttribute('href', `tel:${info[1]}`);
+                phoneNumber.setAttribute('href', `tel:${info1[1]}`);
             case 2:
                 let info2 = ['Yonkers, NY', '+1 914 678 0003', '511 Warburton Ave'];
                 for (let j = 0; j < cardInfo.length; j++) {
                     cardInfo[j].innerHTML = info2[j];
                 }
-                phoneNumber.setAttribute('href', `tel:${info[1]}`);
+                phoneNumber.setAttribute('href', `tel:${info2[1]}`);
             case 3:
                 let info3 = ['Sherrill, NY', '+1	315	908 0004', '14 WEST Noyes BLVD'];
                 for (let j = 0; j < cardInfo.length; j++) {
                     cardInfo[j].innerHTML = info3[j];
                 }
-                phoneNumber.setAttribute('href', `tel:${info[1]}`);
+                phoneNumber.setAttribute('href', `tel:${info3[1]}`);
         }
     });
 }
