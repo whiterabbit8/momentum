@@ -13,6 +13,9 @@ const city = document.querySelector('.city');
 const error = document.querySelector('.weather-error');
 const wind = document.querySelector('.wind');
 const humidity = document.querySelector('.humidity');
+const quote = document.querySelector('.quote');
+const author = document.querySelector('.author');
+const changeQuote = document.querySelector('.change-quote');
 
 
 function showTime() {
@@ -65,6 +68,7 @@ function getLocalStorage() {
 window.addEventListener('DOMContentLoaded', () => {
     getLocalStorage();
     getWeather();
+    getQuotes();
 });
 
 function getRandomNum() {
@@ -131,3 +135,15 @@ function setCity(event) {
 }
 
 city.addEventListener('keypress', setCity);
+
+async function getQuotes() {  
+    const quotes = 'js/quotes.json';
+    const res = await fetch(quotes);
+    const data = await res.json();
+    const randomQuote = data[Math.floor(Math.random() * data.length)];
+    quote.textContent = `"${randomQuote.quote}"`;
+    author.textContent = randomQuote.author;
+}
+//getQuotes();
+
+changeQuote.addEventListener('click', getQuotes);
