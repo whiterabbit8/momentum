@@ -6,6 +6,13 @@ const body = document.querySelector('body');
 let randomNum;
 const slideNext = document.querySelector('.slide-next');
 const slidePrev = document.querySelector('.slide-prev');
+const weatherIcon = document.querySelector('.weather-icon');
+const temperature = document.querySelector('.temperature');
+const weatherDescription = document.querySelector('.weather-description');
+const city = document.querySelector('.city');
+const error = document.querySelector('.weather-error');
+const wind = document.querySelector('.wind');
+const humidity = document.querySelector('.humidity');
 
 
 function showTime() {
@@ -14,7 +21,6 @@ function showTime() {
     time.textContent = currentTime;
     setTimeout(showTime, 1000);
 }
-
 showTime();
 
 function showDate() {
@@ -23,7 +29,6 @@ function showDate() {
     const currentDay = date.toLocaleDateString('en-En', options);
     day.textContent = currentDay;
 }
-
 showDate();
 
 function getTimeOfDay() {
@@ -39,29 +44,33 @@ function showGreeting() {
     greeting.textContent = `Good ${getTimeOfDay()}`;
     setTimeout(showGreeting, 1000);
 }
-
 showGreeting();
 
 function setLocalStorage() {
     localStorage.setItem('userName', userName.value);
+    localStorage.setItem('city', city.value);
 }
-
 window.addEventListener('beforeunload', setLocalStorage);
 
 function getLocalStorage() {
+    if (localStorage.getItem('city')) {
+        city.value = localStorage.getItem('city');
+    } else {
+        city.value = 'Minsk';
+    }
     if (localStorage.getItem('userName')) {
         userName.value = localStorage.getItem('userName');
     }
-}
-
-window.addEventListener('load', getLocalStorage);
+}    
+window.addEventListener('DOMContentLoaded', () => {
+    getLocalStorage();
+    getWeather();
+});
 
 function getRandomNum() {
     randomNum = Math.floor(Math.random() * 20 + 1);
   }
-
 getRandomNum();
-  console.log(randomNum);
 
 function setBg() {
     const bgNum = `${randomNum}`.padStart(2, '0');
@@ -71,7 +80,6 @@ function setBg() {
         body.style.background = `url('https://raw.githubusercontent.com/whiterabbit8/stage1-tasks/assets/images/${getTimeOfDay()}/` + bgNum + ".jpg')";
     }
 }
-
 setBg();
 
 function getSlideNext() {
@@ -83,6 +91,43 @@ function getSlidePrev() {
     randomNum !== 1 ? randomNum -= 1 : randomNum = 20;
     setBg();
 }
-
 slideNext.addEventListener('click', getSlideNext);
 slidePrev.addEventListener('click', getSlidePrev);
+
+
+async function getWeather() {
+    try {
+        error.textContent = '';
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=a16a6915164b8087be79069c331a94a6&units=metric`;
+        const res = await fetch(url);
+        const data = await res.json(); 
+        weatherIcon.className = 'weather-icon owf';
+        weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+        weatherDescription.textContent = data.weather[0].description;
+        temperature.textContent = `${Math.round(data.main.temp)}°C`;
+        wind.textContent = `Wind speed: ${data.wind.speed} m/s`;
+        humidity.textContent = `Humidity: ${Math.round(data.main.humidity)}%`;
+        setTimeout(getWeather, 15 * 60 * 1000);
+    }
+    catch {
+        showError();
+    }
+}   
+
+function showError() {
+    weatherDescription.textContent = '';
+    temperature.textContent = '';
+    wind.textContent = '';
+    humidity.textContent = '';
+    error.textContent = 'Error: wrong city name';
+}
+
+function setCity(event) {
+    if ((event.code === 'Enter') || (event.code === 'NumpadEnter')) {
+        getWeather();
+        city.blur();
+        city.value = city.value.toLowerCase();
+    }
+}
+
+city.addEventListener('keypress', setCity);
