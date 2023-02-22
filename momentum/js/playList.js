@@ -1,43 +1,51 @@
 const playList = [
-    {      
-      title: 'Dawnlight Warms the Castle Stone',
-      src: '../assets/sounds/01 Dawnlight Warms the Castle Stone.mp3',
-      duration: '03:57'
-    },  
-    {      
-        title: 'Deep Forest Dance',
-        src: '../assets/sounds/02 Deep Forest Dance.mp3',
-        duration: '03:14'
+    {
+        title: 'Mouthwash De Menthe',
+        artist: 'Alexandre Desplat',
+        src: '../assets/sounds/Mouthwash De Menthe.mp3',
+        duration: '01:56'
+    },
+    {
+        title: 'Vågner',
+        artist: 'Bremer/ McCoy',
+        src: '../assets/sounds/Vågner.mp3',
+        duration: '01:45'
+    },
+    {
+        title: 'Cuckoo!',
+        artist: 'Choir of Downside School',
+        src: '../assets/sounds/Cuckoo!.mp3',
+        duration: '01:36'
     },
     {      
-        title: 'Medieval Breeze',
-        src: '../assets/sounds/03 Medieval Breeze.mp3',
-        duration: '03:27'
+        title: 'Cicadas',
+        artist: 'Springtime Carnivore',
+        src: '../assets/sounds/Cicadas.mp3',
+        duration: '01:36'
     },
-    {      
-        title: 'Peddling Potions',
-        src: '../assets/sounds/04 Peddling Potions.mp3',
-        duration: '03:21'
+    {
+        title: 'Golden Slumbers',
+        artist: 'The Beatleas',
+        src: '../assets/sounds/Golden Slumbers.mp3',
+        duration: '01:31'
     },
-    {      
-        title: 'The Dice Wizard',
-        src: '../assets/sounds/05 The Dice Wizard.mp3',
-        duration: '03:36'
+    {
+        title: 'Carry That Weight',
+        artist: 'The Beatleas',
+        src: '../assets/sounds/Carry That Weight.mp3',
+        duration: '01:36'
     },
-    {      
-        title: 'A Good Inn',
-        src: '../assets/sounds/06 A Good Inn.mp3',
-        duration: '03:12'
+    {
+        title: 'The End',
+        artist: 'The Beatleas',
+        src: '../assets/sounds/The End.mp3',
+        duration: '02:21'
     },
-    {      
-        title: 'In the Secret Glade of the Shy Dragon',
-        src: '../assets/sounds/07 In the Secret Glade of the Shy Dragon.mp3',
-        duration: '03:44'
-    },
-    {      
-        title: 'Soul of a Nameless Bard',
-        src: '../assets/sounds/08 Soul of a Nameless Bard.mp3',
-        duration: '04:20'
-    }
+    {
+        title: 'Her Majesty',
+        artist: 'The Beatleas',
+        src: '../assets/sounds/Her Majesty.mp3',
+        duration: '00:25'
+    }, 
   ]
   export default playList;
