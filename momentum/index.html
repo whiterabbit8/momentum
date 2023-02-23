@@ -34,7 +34,7 @@
           </div>
         </div>
       </div>
-      <ul class="play-list"></ul>
+      <ul class="play-list hide"></ul>
     </div>
     <div class="weather">
       <input type="text" class="city" />
@@ -57,10 +57,117 @@
     <date class="date"></date>
     <div class="greeting-container">
       <span class="greeting"></span>
-      <input type="text" class="name" />
+      <input type="text" class="name" placeholder="[Enter name]"/>
     </div>
   </main>
   <footer class="footer">
+    <div class="functions-wrapper">
+      <button class="settings-btn"></button>
+      <div class="settings hide">
+
+        <div class="section">
+          <div class="section-name">Language</div>
+          <div class="options">
+            <div class="option language">
+              <div class="option-name">English</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox">
+                <div class="toggle-switch"></div>
+              </label>
+              <div class="option-name">Russian</div>
+            </div>
+           
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-name">Background images</div>
+          <div class="options">
+            <div class="option">
+              <div class="option-name">GitHub</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Unsplash</div>
+              <input type="text" class="tag" placeholder="[Enter tag]"/>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox">
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Flickr</div>
+              <input type="text" class="tag" placeholder="[Enter tag]"/>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox">
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-name">Interface</div>
+          <div class="options">
+            <div class="option">
+              <div class="option-name">Time</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Date</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Greeting</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Quote</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Weather</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Audio Player</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Links</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
     <button class="change-quote"></button>
     <div>
       <div class="quote"></div>
