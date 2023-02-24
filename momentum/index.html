@@ -72,7 +72,7 @@
               <div class="option-name">English</div>
               <label class="toggle">
                 <input type="checkbox" class="toggle-checkbox">
-                <div class="toggle-switch"></div>
+                <div class="toggle-switch language"></div>
               </label>
               <div class="option-name">Russian</div>
             </div>
@@ -81,32 +81,16 @@
         </div>
 
         <div class="section">
-          <div class="section-name">Background images</div>
-          <div class="options">
-            <div class="option">
-              <div class="option-name">GitHub</div>
-              <label class="toggle">
-                <input type="checkbox" class="toggle-checkbox" checked>
-                <div class="toggle-switch"></div>
-              </label>
-            </div>
-            <div class="option">
-              <div class="option-name">Unsplash</div>
-              <input type="text" class="tag" placeholder="[Enter tag]"/>
-              <label class="toggle">
-                <input type="checkbox" class="toggle-checkbox">
-                <div class="toggle-switch"></div>
-              </label>
-            </div>
-            <div class="option">
-              <div class="option-name">Flickr</div>
-              <input type="text" class="tag" placeholder="[Enter tag]"/>
-              <label class="toggle">
-                <input type="checkbox" class="toggle-checkbox">
-                <div class="toggle-switch"></div>
-              </label>
+          <div class="section-name">Background image</div>
+          <div class="custom-select">
+            <div class="selected">GitHub</div>
+            <div class="select-items hide">
+              <div class="item">GitHub</div>
+              <div class="item">Unsplash</div>
+              <div class="item">Flickr</div>
             </div>
           </div>
+          <input type="text" class="tag" placeholder="[Enter tag]" />
         </div>
 
         <div class="section">
@@ -163,13 +147,11 @@
             </div>
           </div>
         </div>
-
-
       </div>
 
     </div>
     <button class="change-quote"></button>
-    <div>
+    <div class="quote-container">
       <div class="quote"></div>
       <div class="author"></div>
     </div>

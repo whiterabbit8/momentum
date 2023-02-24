@@ -83,8 +83,19 @@ const cityTransl = {
 const userName = document.querySelector('.name');
 userName.setAttribute('placeholder', greetingTransl[5][language])
 
+function resizeInput() {
+    if (this.value !== '') {
+        this.style.width = (this.value.length + 1.5) + "ch";
+    } else {
+        this.style.width = 280 + 'px';
+    }
+}
+
+userName.addEventListener('input', resizeInput)
+
 function setLocalStorage() {
     localStorage.setItem('userName', userName.value);
+    localStorage.setItem('userNameWidth', userName.style.width);
     if ((city.value.toLowerCase() === 'minsk') || (city.value.toLowerCase() === 'минск')) {
         localStorage.setItem('city', '');
     } else {
@@ -94,6 +105,15 @@ function setLocalStorage() {
         localStorage.setItem(`checkbox${i}`, switchBtn[i].checked);
     }
     localStorage.setItem('language', language);
+    for (let i = 0; i < interfaceOptions.length; i++) {
+        if (interfaceOptions[i].classList.contains('hide')) {
+            localStorage.setItem(`option${i}`, 'hide')
+        } else {
+            localStorage.setItem(`option${i}`, '')
+        }
+    }
+    localStorage.setItem('bgSource', bgSource.textContent);
+    localStorage.setItem('bgTag', tag.value);
 }
 window.addEventListener('beforeunload', setLocalStorage);
 
@@ -106,6 +126,9 @@ function getLocalStorage() {
     if (localStorage.getItem('userName')) {
         userName.value = localStorage.getItem('userName');
     }
+    if (localStorage.getItem('userNameWidth')) {
+        userName.style.width = localStorage.getItem('userNameWidth');
+    }
     for (let i = 0; i < switchBtn.length; i++) {
         if (localStorage.getItem(`checkbox${i}`)) {
             if (localStorage.getItem(`checkbox${i}`) === 'true') {
@@ -115,12 +138,28 @@ function getLocalStorage() {
             }
         }  
     }
+    for (let i = 0; i < interfaceOptions.length; i++) {
+        if (localStorage.getItem(`option${i}`)) {
+            interfaceOptions[i].classList.add(localStorage.getItem(`option${i}`))
+        }
+    }
+    if (localStorage.getItem('bgSource')) {
+        bgSource.textContent = localStorage.getItem('bgSource');
+    } else {
+        bgSource.textContent = 'GitHub';
+    }
+    if (localStorage.getItem('bgTag')) {
+        tag.value = localStorage.getItem('bgTag');
+    } else {
+        tag.value = 'nature';
+    }
 }    
 
 window.addEventListener('DOMContentLoaded', () => {
     getLocalStorage();
     getWeather();
     getQuotes();
+    disableTagInput();
 });
 
 // ***** Background *****
@@ -140,7 +179,13 @@ function setBg() {
     const img = new Image();
     img.src = `https://raw.githubusercontent.com/whiterabbit8/stage1-tasks/assets/images/${greetingTransl[getTimeOfDay()]['en']}/` + bgNum + '.jpg';
     img.onload = () => {
-        body.style.background = `url('https://raw.githubusercontent.com/whiterabbit8/stage1-tasks/assets/images/${greetingTransl[getTimeOfDay()]['en']}/` + bgNum + ".jpg')";
+        if (bgSource.textContent === 'GitHub') {
+            body.style.background = `url('${img.src}')`;
+        } else if (bgSource.textContent === 'Unsplash') {
+            getUnsplashImage();
+        } else if (bgSource.textContent === 'Flickr') {
+            getFlickrImage();
+        }
     }
 }
 setBg();
@@ -417,7 +462,22 @@ function hidePlayList() {
 
 playListBtn.addEventListener('click', hidePlayList);
 
-// ***** Translation *****
+// ***** Settings *****
+
+const settingsBtn = document.querySelector('.settings-btn');
+const settings = document.querySelector('.settings');
+const greetingContaner = document.querySelector('.greeting-container');
+const quoteContainer = document.querySelector('.quote-container');
+const player = document.querySelector('.player');
+const weather = document.querySelector('.weather');
+const interfaceOptions = [time, day, greetingContaner, quoteContainer, weather, player];
+
+function showSettings() {
+    settingsBtn.classList.toggle('active');
+    settings.classList.toggle('hide');
+}
+
+settingsBtn.addEventListener('click', showSettings);
 
 const switchBtn = document.querySelectorAll('.toggle-checkbox');
 
@@ -427,9 +487,63 @@ function setLanguage() {
     window.location.reload();
 }
 
-switchBtn[0].addEventListener('click', setLanguage)
+switchBtn[0].addEventListener('click', setLanguage);
 
-// ***** Settings *****
+function hideElem(btn, elem) {
+    switchBtn[btn].toggleAttribute('checked');
+    elem.classList.toggle('hide');
+}
+
+for (let i = 1; i < switchBtn.length; i++) {
+    switchBtn[i].addEventListener('click', () => hideElem(i, interfaceOptions[i - 1]))
+}
+
+const bgSource = document.querySelector('.selected');
+const sourcesMenu = document.querySelector('.select-items');
+
+function openBgMenu() {
+    bgSource.classList.toggle('active');
+    sourcesMenu.classList.toggle('hide');
+}
+
+bgSource.addEventListener('click', openBgMenu);
+
+const sourceItem = document.querySelectorAll('.item');
+
+function setBgSource(item) {
+    bgSource.textContent = sourceItem[item].textContent;
+    sourcesMenu.classList.add('hide');
+    bgSource.classList.remove('active');
+    setBg()
+}
+
+function disableTagInput() {
+    if (bgSource.textContent === 'GitHub') {
+        tag.setAttribute('disabled', '')
+    } else {
+        tag.removeAttribute('disabled')
+    }
+}
+
+for (let i = 0; i < sourceItem.length; i++) {
+    sourceItem[i].addEventListener('click', () => {
+        setBgSource(i);
+        disableTagInput();
+    })
+}
+
+// ***** Settings Translation *****
+
+const optionName = document.querySelectorAll('.option-name');
+const sectionName = document.querySelectorAll('.section-name');
+const tag = document.querySelector('.tag');
+
+function setTag(event) {
+    if ((event.code === 'Enter') || (event.code === 'NumpadEnter')) {
+        setBg();
+    }
+}
+tag.addEventListener('keypress', setTag)
 
 const settingsTransl = [
     {
@@ -451,18 +565,6 @@ const settingsTransl = [
     {
         'en': 'Russian',
         'ru': 'Русский',
-    },
-    {
-        'en': 'GitHub',
-        'ru': 'GitHub',
-    },
-    {
-        'en': 'Unsplash',
-        'ru': 'Unsplash',
-    },
-    {
-        'en': 'Flickr',
-        'ru': 'Flickr',
     },
     {
         'en': 'Time',
@@ -498,21 +600,6 @@ const settingsTransl = [
     },
 ]
 
-const settingsBtn = document.querySelector('.settings-btn');
-const settings = document.querySelector('.settings');
-
-function showSettings() {
-    settingsBtn.classList.toggle('active');
-    settings.classList.toggle('hide');
-}
-
-settingsBtn.addEventListener('click', showSettings);
-
-const optionName = document.querySelectorAll('.option-name');
-console.log(optionName);
-const sectionName = document.querySelectorAll('.section-name');
-const tag = document.querySelectorAll('.tag');
-
 function translSettings() {
     for (let i = 0; i < optionName.length; i++) {
         optionName[i].textContent = settingsTransl[i + 3][language];
@@ -520,34 +607,33 @@ function translSettings() {
     for (let i = 0; i < sectionName.length; i++) {
         sectionName[i].textContent = settingsTransl[i][language];
     }
-    for (let i = 0; i < tag.length; i++) {
-        tag[i].setAttribute('placeholder', settingsTransl[15][language]);
-    }
+    tag.setAttribute('placeholder', settingsTransl[settingsTransl.length - 1][language]);
 }
 translSettings();
 
+// ***** API Images *****
 
-/*function setSettingsStorage() {
-    for (let i = 0; i < switchBtn.length; i++) {
-        localStorage.setItem(`checkbox${i}`, switchBtn[i].checked);
-    }
-    localStorage.setItem('language', language);
+async function getUnsplashImage() {
+    const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${tag.value}&client_id=YsC03yYeSJl6om2bjRIXe5kl5QXV8mu4jvHco4YSc0E`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const img = new Image();
+    img.src = data.urls.regular;
+    img.onload = () => {
+        body.style.background = `url('${img.src}') center center / cover`
+    }    
 }
 
-window.addEventListener('beforeunload', setSettingsStorage);
-
-function getSettingsStorage() {
-    for (let i = 0; i < switchBtn.length; i++) {
-        if (localStorage.getItem(`checkbox${i}`)) {
-            if (localStorage.getItem(`checkbox${i}`) === 'true') {
-                switchBtn[i].setAttribute('checked', '');
-            } else {
-                switchBtn[i].removeAttribute('checked');
-            }
-        }  
+async function getFlickrImage() {
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=03e6eafc947310b4219a08bd676a2045&tags=${tag.value}&extras=url_l&format=json&nojsoncallback=1`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let random = Math.floor(Math.random() * data.photos.photo.length - 1);
+    const img = new Image();
+    img.src = data.photos.photo[random].url_l;
+    img.onload = () => {
+        body.style.background = `url('${img.src}') center center / cover`
     }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    getSettingsStorage();
-});*/
+
