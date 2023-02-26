@@ -113,7 +113,11 @@ function setLocalStorage() {
         }
     }
     localStorage.setItem('bgSource', bgSource.textContent);
-    localStorage.setItem('bgTag', tag.value);
+    if ((tag.value !== 'night') && (tag.value !== 'morning') && (tag.value !== 'afternoon') && ((tag.value !== 'evening'))) {
+        localStorage.setItem('bgTag', tag.value);
+    } else {
+        localStorage.setItem('bgTag', '');
+    }
 }
 window.addEventListener('beforeunload', setLocalStorage);
 
@@ -151,7 +155,7 @@ function getLocalStorage() {
     if (localStorage.getItem('bgTag')) {
         tag.value = localStorage.getItem('bgTag');
     } else {
-        tag.value = 'nature';
+        tag.value = greetingTransl[getTimeOfDay()]['en'];
     }
 }    
 
