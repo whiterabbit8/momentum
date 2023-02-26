@@ -470,7 +470,8 @@ const greetingContaner = document.querySelector('.greeting-container');
 const quoteContainer = document.querySelector('.quote-container');
 const player = document.querySelector('.player');
 const weather = document.querySelector('.weather');
-const interfaceOptions = [time, day, greetingContaner, quoteContainer, weather, player];
+const toDoBtn = document.querySelector('.todo-btn');
+const interfaceOptions = [time, day, greetingContaner, quoteContainer, weather, player, toDoBtn];
 
 function showSettings() {
     settingsBtn.classList.toggle('active');
@@ -591,8 +592,8 @@ const settingsTransl = [
         'ru': 'Аудио плеер',
     },
     {
-        'en': 'Links',
-        'ru': 'Ссылки',
+        'en': 'Todo',
+        'ru': 'Todo',
     },
     {
         'en': '[Enter tag]',
@@ -635,5 +636,194 @@ async function getFlickrImage() {
         body.style.background = `url('${img.src}') center center / cover`
     }
 }
+
+// ***** ToDo *****
+
+const todoContainer = document.querySelector('.todo-container');
+
+function showToDo() {
+    toDoBtn.classList.toggle('active');
+    todoContainer.classList.toggle('hide');
+}
+
+toDoBtn.addEventListener('click', showToDo);
+
+const todoFolder = document.querySelector('.todo-folder');
+const todoFolderMenu = document.querySelector('.folder-menu');
+const folderMenuItem = document.querySelectorAll('.menu-item');
+const todoInput = document.querySelector('.todo-input');
+const todoList = document.querySelector('.todo-list');
+
+function showFolderMenu() {
+    todoFolder.classList.toggle('active');
+    todoFolderMenu.classList.toggle('hide');
+}
+
+todoFolder.addEventListener('click', showFolderMenu)
+
+function selectFolder(item) {
+    todoFolder.textContent = folderMenuItem[item].textContent;
+    todoFolderMenu.classList.add('hide');
+    todoFolder.classList.remove('active');
+    disableTodoInput();
+    sortTodo();
+}
+
+for (let i = 0; i < folderMenuItem.length; i++) {
+    folderMenuItem[i].addEventListener('click', () => selectFolder(i))
+}
+
+function disableTodoInput() {
+    if (todoFolder.textContent === todoTransl[2][language]) {
+        todoInput.setAttribute('disabled', '')
+        todoInput.setAttribute('placeholder', '')
+    } else {
+        todoInput.removeAttribute('disabled')
+        todoInput.setAttribute('placeholder', todoTransl[3][language])
+    }
+}
+
+function addTodoLi() {
+    const li = document.createElement('li');
+    li.classList.add('todo-list-item');
+    for (let i = 0; i < folderMenuItem.length; i++) {
+        if (todoFolder.textContent === folderMenuItem[i].textContent) {
+            li.id = todoTransl[i]['en']
+        }       
+    }
+    todoList.append(li);
+    const span = document.createElement('span');
+    span.classList.add('todo');
+    span.textContent = todoInput.value;
+    li.append(span);
+}
+
+function addTodo(event) {
+    if ((event.code === 'Enter') || (event.code === 'NumpadEnter')) {
+        addTodoLi();
+        todoInput.value = '';
+    }
+}
+
+todoInput.addEventListener('keypress', addTodo);
+
+function sortTodo() {
+    const todoLI = document.querySelectorAll('.todo-list-item');
+    const todo = document.querySelectorAll('.todo');
+    for (let j = 0; j < folderMenuItem.length; j++) {
+        if (todoFolder.textContent === folderMenuItem[j].textContent) {
+            for (let i = 0; i < todo.length; i++) {
+                if (todoLI[i].id !== todoTransl[j]['en']) {
+                    todoLI[i].style.display = 'none'
+                } else if (todoLI[i].id === todoTransl[j]['en']) {
+                    todoLI[i].style.display = 'flex'
+                } 
+                if ((todo[i].classList.contains('done')) && ((todoFolder.textContent === 'Done') || (todoFolder.textContent === 'Завершено'))) {
+                    todoLI[i].style.display = 'flex'
+                }
+            }
+        }
+    }
+    
+}
+
+function todoDone(event) {
+   if (event.target.classList.contains('todo')) {
+        event.target.classList.toggle('done')
+   }
+}
+
+todoList.addEventListener('click', todoDone);
+
+function deleteTodo(event) {
+    if (event.target.tagName === 'LI') {
+         event.target.remove();
+    }
+ }
+
+todoList.addEventListener('click', deleteTodo);
+
+function clearTodoStorage() {
+    if (localStorage.getItem('todo0')) {
+        let i = 0;
+        while (localStorage.getItem(`todo${i}`)) {
+            i++
+        }
+        for (let j = 0; j < i; j++) {
+            localStorage.removeItem(`todo${j}`);
+            localStorage.removeItem(`todoID${j}`);
+            localStorage.removeItem(`todo${j}-done`);
+        }
+    }
+}
+
+function setTodoStorage() {
+    const todoLI = document.querySelectorAll('.todo-list-item');
+    const todo = document.querySelectorAll('.todo');
+    clearTodoStorage();
+        for (let i = 0; i < todo.length; i++) {
+            localStorage.setItem(`todo${i}`, `${todo[i].textContent}`);
+            localStorage.setItem(`todoID${i}`, `${todoLI[i].id}`);
+            if (todo[i].classList.contains('done')) {
+                localStorage.setItem(`todo${i}-done`, 'yes')
+            } else {
+                localStorage.setItem(`todo${i}-done`, 'no')
+            }
+        }
+}
+
+window.addEventListener('beforeunload', setTodoStorage);
+
+function getTodoStorage() {
+    if (localStorage.getItem('todo0')) {
+        let i = 0;
+        while (localStorage.getItem(`todo${i}`)) {
+            i++
+        }
+        for (let j = 0; j < i; j++) {
+            const li = document.createElement('li');
+            li.id = localStorage.getItem(`todoID${j}`);
+            li.classList.add('todo-list-item');
+            todoList.append(li);
+            const span = document.createElement('span');
+            span.classList.add('todo');
+            if (localStorage.getItem(`todo${j}-done`) === 'yes') {
+                span.classList.add('done')
+            }
+            span.textContent = localStorage.getItem(`todo${j}`)
+            li.append(span);
+        }
+    }
+    sortTodo()
+}
+
+window.addEventListener('DOMContentLoaded', getTodoStorage)
+
+const todoTransl = [
+    {
+        'en': 'Inbox',
+        'ru': 'Inbox',
+    },
+    {
+        'en': 'Today',
+        'ru': 'Сегодня',
+    },
+    {
+        'en': 'Done',
+        'ru': 'Завершено',
+    },
+    {
+        'en': 'Enter new Todo',
+        'ru': 'Введите новый Todo',
+    },
+]
+
+function translTodo() {
+    for (let i = 0; i < folderMenuItem.length; i++) {
+        folderMenuItem[i].textContent = todoTransl[i][language]; 
+    }
+    todoInput.setAttribute('placeholder', todoTransl[3][language]);
+}
+translTodo()
 
 

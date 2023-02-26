@@ -261,14 +261,16 @@ body {
 .change-quote:hover,
 .volume:hover,
 .play-list-btn:hover,
-.settings-btn:hover {
+.settings-btn:hover,
+.todo-btn:hover {
   opacity: 1;
 }
 
 .player-icon:active,
 .slider-icon:active,
 .change-quote:active,
-.settings-btn:active {
+.settings-btn:active,
+.todo-btn:active {
   border: 0;
   outline: 0;  
   transform: scale(1.1);
@@ -633,7 +635,8 @@ body {
   transform: rotate(180deg);
 }
 
-.settings-btn.active {
+.settings-btn.active,
+.todo-btn.active {
   border: 0;
   outline: 0;  
   transform: scale(1.1);
@@ -698,6 +701,7 @@ body {
 
 .item:last-child {
   border-radius: inherit;
+  cursor: pointer;
 }
 
 .item:hover {
@@ -709,5 +713,184 @@ body {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
+.todo-btn {
+  position: absolute;
+  right: 25px;
+  bottom: 20px;
+  border: 0;
+  background: transparent;
+  color: #FFFFFF;
+  font-size: 18px;
+  opacity: .8;
+  cursor: pointer;
+  transition: .3s; 
+}
 
+.todo-container {
+  position: absolute;
+  right: 20px;
+  bottom: 55px;
+  width: 300px;
+  min-height: 140px;
+  background: #FFFFFF;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: 0.5s;
+  animation: slideUp 0.5s ease-in-out;
+  padding: 10px 20px;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
+.todo-container.hide {
+  display: none;
+}
+
+.todo-folder {
+  position: relative;
+  width: 120px;
+  height: 30px;
+  border-radius: 3px;
+  padding: 6px;
+  text-align: start;
+}
+
+.todo-folder::after {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-left: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  transition: 0.3s;
+}
+
+.active::after {
+  top: 12.5px;
+  transform: rotate(135deg);
+}
+
+.todo-folder:hover {
+  cursor: pointer;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+  background: #f0f0f0;
+}
+
+.folder-menu {
+  position: absolute;
+  z-index: 10;
+  width: 120px;
+  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  background: #f0f0f0;
+  border-radius: 3px;
+  animation: slideDown 0.2s ease-in-out;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.folder-menu.hide {
+  display: none;
+}
+
+.menu-item {
+  width: 120px;
+  height: 30px;
+  padding: 6px;
+  text-align: start;
+}
+
+.menu-item:first-child {
+  border-radius: 3px 3px 0 0;
+}
+
+.menu-item:last-child {
+  border-radius: 0 0 3px 3px;
+}
+
+.menu-item:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+.todo-input {
+  font-size: 16px;
+  height: 30px;
+  border: 0;
+  padding-left: 6px;
+  outline: 0;
+}
+
+.todo-input::placeholder {
+  opacity: .6;
+}
+
+.todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.todo-list-item {
+  position: relative;
+  z-index: 1;
+  height: 25px;
+  width: 250px;
+  display: flex;
+  margin-bottom: 1.5px;
+}
+
+.todo {
+  position: relative;
+  z-index: 50;
+  padding: 5px;
+  padding-right: 30px;
+  font-size: 14px;
+  width: 220px;
+  border-radius: 4px;
+  text-align: start;
+}
+
+.todo:hover {
+  cursor: pointer;
+  background: #f0f0f0;
+}
+
+.todo.done {
+  background: #56c080;
+  text-decoration: line-through;
+}
+
+.todo.done:after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 10px;
+  height: 6px;
+  border-left: 3px solid #FFFFFF;
+  border-bottom: 3px solid #FFFFFF;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 7px;
+  right: 9px;
+  transition: 0.3s;
+}
+
+.todo-list-item:hover {
+  cursor: pointer;
+  background: url('../assets/svg/delete.svg');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 25px;
+}
+
+.todo-btn.hide {
+  display: none;
+}
