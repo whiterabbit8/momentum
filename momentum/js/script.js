@@ -497,6 +497,9 @@ switchBtn[0].addEventListener('click', setLanguage);
 function hideElem(btn, elem) {
     switchBtn[btn].toggleAttribute('checked');
     elem.classList.toggle('hide');
+    if (elem === quoteContainer) {
+        changeQuote.classList.toggle('hide')
+    }
 }
 
 for (let i = 1; i < switchBtn.length; i++) {

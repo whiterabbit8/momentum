@@ -453,6 +453,10 @@ body {
   display: none;
 }
 
+.change-quote.hide {
+  display: none;
+}
+
 .quote {
   min-height: 32px;
 }
