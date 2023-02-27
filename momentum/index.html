@@ -34,7 +34,7 @@
           </div>
         </div>
       </div>
-      <ul class="play-list"></ul>
+      <ul class="play-list hide"></ul>
     </div>
     <div class="weather">
       <input type="text" class="city" />
@@ -57,15 +57,118 @@
     <date class="date"></date>
     <div class="greeting-container">
       <span class="greeting"></span>
-      <input type="text" class="name" />
+      <input type="text" class="name" placeholder="[Enter name]"/>
     </div>
   </main>
   <footer class="footer">
+    <div class="functions-wrapper">
+      <button class="settings-btn"></button>
+      <div class="settings hide">
+
+        <div class="section">
+          <div class="section-name">Language</div>
+          <div class="options">
+            <div class="option language">
+              <div class="option-name">English</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox">
+                <div class="toggle-switch language"></div>
+              </label>
+              <div class="option-name">Russian</div>
+            </div>
+           
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-name">Background image</div>
+          <div class="custom-select">
+            <div class="selected">GitHub</div>
+            <div class="select-items hide">
+              <div class="item">GitHub</div>
+              <div class="item">Unsplash</div>
+              <div class="item">Flickr</div>
+            </div>
+          </div>
+          <input type="text" class="tag" placeholder="[Enter tag]" />
+        </div>
+
+        <div class="section">
+          <div class="section-name">Interface</div>
+          <div class="options">
+            <div class="option">
+              <div class="option-name">Time</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Date</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Greeting</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Quote</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Weather</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Audio Player</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+            <div class="option">
+              <div class="option-name">Links</div>
+              <label class="toggle">
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <div class="toggle-switch"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
     <button class="change-quote"></button>
-    <div>
+    <div class="quote-container">
       <div class="quote"></div>
       <div class="author"></div>
     </div>
+
+    <button class="todo-btn">Todo</button>
+      <div class="todo-container hide">
+        <div class="select-folder">
+          <div class="todo-folder">Inbox</div>
+          <div class="folder-menu hide">
+            <div class="menu-item">Inbox</div>
+            <div class="menu-item">Today</div>
+            <div class="menu-item">Done</div>
+          </div>
+        </div>
+        <ul class="todo-list"></ul>
+        <input type="text" class="todo-input" placeholder="Enter new Todo">
+      </div>
   </footer>
   <script type="module" src="js/script.js"></script>
   <script type="module" src="js/playList.js"></script>
